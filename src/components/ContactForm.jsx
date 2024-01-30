@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts } from '../../redux/selectors';
-import { addContact } from '../../redux/operations';
 import { nanoid } from '@reduxjs/toolkit';
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
-import { Form, Input, Label, Button } from './ContactForm.styled';
+
+import { selectContacts } from '../redux/contacts/selectors';
+import { addContact } from '../redux/contacts/operations';
 
 export const ContactForm = () => {
   const dispatch = useDispatch();
@@ -55,10 +55,14 @@ export const ContactForm = () => {
   };
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <Label>
+    <form
+      className=" flex flex-col items-center gap-4 mt-10"
+      onSubmit={handleSubmit}
+    >
+      <label className="flex flex-col text-lg italic text-violet-700 font-medium">
         Name
-        <Input
+        <input
+          className="input input-bordered w-80"
           type="text"
           name="name"
           pattern="^[A-Z][a-z]+ [A-Z][a-z]+$"
@@ -68,10 +72,11 @@ export const ContactForm = () => {
           onChange={handleChange}
           required
         />
-      </Label>
-      <Label>
+      </label>
+      <label className=" flex flex-col text-lg italic text-violet-700 font-medium">
         Number
-        <Input
+        <input
+          className="input input-bordered w-80"
           type="tel"
           name="number"
           pattern="\+?[0-9\s\-\(\)]+"
@@ -81,8 +86,13 @@ export const ContactForm = () => {
           onChange={handleChange}
           required
         />
-      </Label>
-      <Button type="submit">Add contact</Button>
-    </Form>
+      </label>
+      <button
+        className="flex justify-center mb-8 items-center font-bold hover:text-white hover:bg-orange-400 hover:border-none btn btn-outline text-xl bg-yellow-300 text-lime-600"
+        type="submit"
+      >
+        Add contact
+      </button>
+    </form>
   );
 };

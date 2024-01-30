@@ -1,16 +1,15 @@
 import RingLoader from 'react-spinners/RingLoader';
-import { LoderBeckdrop } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <LoderBeckdrop>
+    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
       <RingLoader
-        color="#02a7e3e7"
+        color="#02e30de7"
         size={100}
         aria-label="Loading Spinner"
         data-testid="loader"
         speedMultiplier="1"
       />
-    </LoderBeckdrop>
+    </div>
   );
 };

@@ -1,35 +1,58 @@
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchContacts } from '../redux/operations';
-import { useSelector } from 'react-redux';
-import { selectError, selectIsLoading } from '../redux/selectors';
-import { Section } from './Section/Section';
-import { ContactForm } from './ContactForm/ContactForm';
-import { ContactList } from './ContactList/ContactList';
-import { Filter } from './Filter/Filter';
-import { Loader } from './Loader/Loader';
-import { Error } from './Error/Error';
+import { useDispatch, useSelector } from 'react-redux';
+import { lazy, useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
+
+import { refreshUser } from '../redux/auth/operations';
+import { PublicRoute } from '../routes/PublicRoute';
+import { PrivateRoute } from '../routes/PrivateRoute';
+import Layout from './Layout/Layout';
+import { Loader } from './Loader';
+import { selectIsRefreshing } from '../redux/auth/selectors';
+
+const Home = lazy(() => import('../pages/Home'));
+const Login = lazy(() => import('../pages/Login'));
+const Register = lazy(() => import('../pages/Register'));
+const Contacts = lazy(() => import('../pages/Contacts'));
 
 export const App = () => {
   const dispatch = useDispatch();
-  const loading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  const isRefreshing = useSelector(selectIsRefreshing);
 
   useEffect(() => {
-    dispatch(fetchContacts());
+    dispatch(refreshUser());
   }, [dispatch]);
 
-  return (
-    <>
-      <Section title="Phonebook">
-        <ContactForm />
-      </Section>
-      <Section title="Contacts">
-        <Filter />
-        {loading && <Loader />}
-        {error && <Error />}
-        <ContactList />
-      </Section>
-    </>
+  return isRefreshing ? (
+    <Loader />
+  ) : (
+    <Routes>
+      <Route path="/" element={<Layout />}>
+        <Route index element={<Home />} />
+        <Route
+          path="contacts"
+          element={
+            <PrivateRoute>
+              <Contacts />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="login"
+          element={
+            <PublicRoute>
+              <Login />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="register"
+          element={
+            <PublicRoute>
+              <Register />
+            </PublicRoute>
+          }
+        />
+      </Route>
+    </Routes>
   );
 };

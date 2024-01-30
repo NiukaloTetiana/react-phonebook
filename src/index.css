@@ -1,18 +1,7 @@
-@import 'normalize.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  background-image: url('https://img.freepik.com/premium-photo/soft-focus-abstract-floral-background-pale-blue-peony-flower-petals-macro-flowers-backdrop-for_459897-685.jpg');
-  background-size: cover;
-  color: #ffcaf0d1;
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
-}
+/* :active {
+  color: white !important;
+} */
