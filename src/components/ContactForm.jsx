@@ -59,10 +59,10 @@ export const ContactForm = () => {
       className=" flex flex-col items-center gap-4 mt-10"
       onSubmit={handleSubmit}
     >
-      <label className="flex flex-col text-lg italic text-violet-700 font-medium">
+      <label className="text-lg italic text-violet-700 font-medium w-80">
         Name
         <input
-          className="input input-bordered w-80"
+          className="input input-bordered w-full"
           type="text"
           name="name"
           pattern="^[A-Z][a-z]+ [A-Z][a-z]+$"
@@ -73,10 +73,10 @@ export const ContactForm = () => {
           required
         />
       </label>
-      <label className=" flex flex-col text-lg italic text-violet-700 font-medium">
+      <label className="text-lg italic text-violet-700 font-medium w-80">
         Number
         <input
-          className="input input-bordered w-80"
+          className="input input-bordered w-full"
           type="tel"
           name="number"
           pattern="\+?[0-9\s\-\(\)]+"

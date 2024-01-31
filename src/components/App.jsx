@@ -5,9 +5,10 @@ import { Route, Routes } from 'react-router-dom';
 import { refreshUser } from '../redux/auth/operations';
 import { PublicRoute } from '../routes/PublicRoute';
 import { PrivateRoute } from '../routes/PrivateRoute';
-import Layout from './Layout/Layout';
+import Layout from './Layout';
 import { Loader } from './Loader';
 import { selectIsRefreshing } from '../redux/auth/selectors';
+import { Error } from './Error';
 
 const Home = lazy(() => import('../pages/Home'));
 const Login = lazy(() => import('../pages/Login'));
@@ -53,6 +54,8 @@ export const App = () => {
           }
         />
       </Route>
+
+      <Route path="*" element={<Error />} />
     </Routes>
   );
 };

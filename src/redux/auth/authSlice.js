@@ -12,6 +12,7 @@ const initialState = {
   isLoggedIn: false,
   isRefreshing: false,
   isLoading: false,
+  isError: false,
 };
 
 const contactsSlice = createSlice({

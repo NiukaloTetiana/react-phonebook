@@ -1,4 +1,5 @@
 import { useDispatch } from 'react-redux';
+import { motion } from 'framer-motion';
 
 import { deleteContact } from '../redux/contacts/operations';
 
@@ -11,7 +12,16 @@ export const ContactsListItem = ({ id, name, number }) => {
 
   return (
     <div className="flex flex-col-reverse">
-      <li
+      <motion.li
+        animate={{
+          opacity: 1,
+          x: 0,
+          transition: {
+            duration: 0.4,
+            delay: 0.5,
+          },
+        }}
+        initial={{ opacity: 0, x: 300 }}
         key={id}
         className=" text-xl font-semibold text-white bg-lime-600 border-spacing-1 rounded-lg p-3 flex justify-between"
       >
@@ -25,7 +35,7 @@ export const ContactsListItem = ({ id, name, number }) => {
         >
           Delete
         </button>
-      </li>
+      </motion.li>
     </div>
   );
 };

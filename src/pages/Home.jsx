@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 
 const Home = () => {
   return (
@@ -9,7 +10,17 @@ const Home = () => {
           className="max-w-xl rounded-lg shadow-2xl"
           alt="Phone"
         />
-        <div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0 }}
+          animate={{
+            opacity: 1,
+            scale: 1,
+            transition: {
+              duration: 0.4,
+              delay: 0.5,
+            },
+          }}
+        >
           <h1 className="text-5xl font-bold text-violet-700">
             Welcome to PhoneBook!
           </h1>
@@ -22,7 +33,7 @@ const Home = () => {
           >
             Get Started
           </Link>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
